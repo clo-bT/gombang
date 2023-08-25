@@ -24,10 +24,8 @@ const RoomList = (props) => {
             axios.post(`${process.env.REACT_APP_API_ROOT}/roomdeal/search-address`, SearchByAddressRequestDto
             ).then((response) => {
                 console.log("주소주소", response.data)
-                const temp = []
-                temp.concat()
-                response.data.data.map((value,index)=>(roomids = roomids.concat(value.roomDealId)))
-                console.log('roomids',roomids)
+                const temp = response.data.data.map((value => value.roomDealId))
+                setRoomids(temp)
             }).catch((error) => {
                 console.error('API 호출 에러:', error);
             })
@@ -36,8 +34,8 @@ const RoomList = (props) => {
             axios.post(`${process.env.REACT_APP_API_ROOT}/roomdeal/search-station-univ`, SearchByStationUnivRequestDto
             ).then((response) => {
                 console.log("역역", response.data)
-                response.data.data.map((value,index)=>(roomids = roomids.concat(value.roomId)))
-                console.log('roomids',roomids)
+                const temp = response.data.data.map((value => value.roomId))
+                setRoomids(temp)
             }).catch((error) => {
                 console.error('API 호출 에러:', error);
             })
